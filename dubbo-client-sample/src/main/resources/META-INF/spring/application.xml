@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans.xsd        http://code.alibabatech.com/schema/dubbo        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="dubbo-server"/>
+    <!-- 不需要注册到服务注册中心 -->
+    <!--    <dubbo:registry address="N/A"/>-->
+    <!-- 使用zookeeper作为注册中心 -->
+    <!--    <dubbo:registry address="zookeeper://192.168.247.131:2181" timeout="10000"/>-->
+    <!-- 使用nacos作为注册中心 -->
+    <dubbo:registry address="nacos://192.168.247.131:8848" timeout="10000"/>
+    <!-- 配置引用服务：如果有配置注册中心，则url就不需要配置了，因为url直接从注册中心上获取 -->
+    <dubbo:reference id="loginService" interface="com.gupaoedu.dubbo.server.ILoginService"/>
+    <!--                     url="dubbo://192.168.1.3:20880/com.gupaoedu.dubbo.server.ILoginService"/>-->
+</beans>
